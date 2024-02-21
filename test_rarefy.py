@@ -35,3 +35,9 @@ def test_seed_reproducibility():
     rarefied_1 = rarefy(x, depth=50, iterations=1, seed=42)
     rarefied_2 = rarefy(x, depth=50, iterations=1, seed=42)
     np.testing.assert_allclose(rarefied_1, rarefied_2, rtol=1e-6)
+
+def test_seed_reproducibility_fail():
+    x = np.array([10, 20, 30, 40, 50])
+    rarefied_1 = rarefy(x, depth=50, iterations=1, seed=27)
+    rarefied_2 = rarefy(x, depth=50, iterations=1, seed=35)
+    np.testing.assert_allclose(rarefied_1, rarefied_2, rtol=1e-6)
